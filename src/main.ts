@@ -7,6 +7,11 @@ import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 import { environment } from './environments/environment';
 
+// need to inject this for http to work with ionic 7
+// nothing to be done in app component
+
+import { provideHttpClient } from '@angular/common/http';  
+
 if (environment.production) {
   enableProdMode();
 }
@@ -16,5 +21,6 @@ bootstrapApplication(AppComponent, {
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     importProvidersFrom(IonicModule.forRoot({})),
     provideRouter(routes),
+    provideHttpClient()
   ],
 });
