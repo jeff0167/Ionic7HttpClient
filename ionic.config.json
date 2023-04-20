@@ -1,0 +1,7 @@
+{
+  "name": "Ionic7HttpClient",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
