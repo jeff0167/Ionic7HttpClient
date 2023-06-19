@@ -14,13 +14,12 @@ export class ApiService {
   base_path = 'http://localhost:3000/students';  // IMPORTANT: you use    npx json-server --watch API/data.json   to start the server
 
   // OR
-  // top run the server, open a new cmd, from the windows search field, DOING IT FROM THE PROJECT FOLDER WONT WORK, CAUSE BUQ SIMPLICITY
+  // top run the server, open a new cmd, from the windows search field
   // json-server --watch API/data.json
 
   // remember ionic serve --open
 
   constructor(public http: HttpClient) { }
-
   // Http Options
   httpOptions = {
     headers: new HttpHeaders({
@@ -47,23 +46,13 @@ export class ApiService {
 
 
   // Create a new item
-  createItem(item): Observable<Student> {
-    return this.http
-      .post<Student>(this.base_path, JSON.stringify(item), this.httpOptions)
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      )
+  createItem(item: Student): Observable<Student> {
+    return this.http.post<Student>(this.base_path, JSON.stringify(item), this.httpOptions);
   }
 
   // Get single student data by ID
-  getItem(id): Observable<Student> {
-    return this.http
-      .get<Student>(this.base_path + '/' + id)
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      )
+  getItem(id: number): Observable<Student> {
+    return this.http.get<Student>(this.base_path + '/' + id);
   }
 
   // Get students data
@@ -73,26 +62,16 @@ export class ApiService {
       .pipe(
         retry(2),
         catchError(this.handleError)
-      )
+      );
   }
 
   // Update item by id
-  updateItem(id, item): Observable<Student> {
-    return this.http
-      .put<Student>(this.base_path + '/' + id, JSON.stringify(item), this.httpOptions)
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      )
+  updateItem(id: number, item: Student): Observable<Student> {
+    return this.http.put<Student>(this.base_path + '/' + id, JSON.stringify(item), this.httpOptions);
   }
 
   // Delete item by id
-  deleteItem(id) {
-    return this.http
-      .delete<Student>(this.base_path + '/' + id, this.httpOptions)
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      )
+  deleteItem(id: number) {
+    return this.http.delete<Student>(this.base_path + '/' + id, this.httpOptions);
   }
 }

@@ -7,6 +7,7 @@ import { ApiService } from '../services/api.service';
 import { RouterModule } from '@angular/router';
 
 import { HttpClientModule } from '@angular/common/http';
+import { Student } from '../models/student';
 
 @Component({
   selector: 'app-student-list',
@@ -20,11 +21,10 @@ export class StudentListPage implements OnInit {
   studentsData: any;
 
   constructor(public apiService: ApiService) {
-    this.studentsData = [];
   }
 
   ngOnInit() {
-    // this.getAllStudents();
+     this.getAllStudents();
   }
 
   ionViewWillEnter() {
@@ -41,8 +41,7 @@ export class StudentListPage implements OnInit {
     })
   }
 
-
-  delete(item) {
+  delete(item: Student) {
     //Delete item in Student data
     this.apiService.deleteItem(item.id).subscribe(Response => {
       //Update list after delete is successful

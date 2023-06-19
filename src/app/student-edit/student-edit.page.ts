@@ -19,28 +19,22 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class StudentEditPage implements OnInit {
 
-  id: number;
+  id: number = 0;
   data: Student;
 
-  constructor(
-    public activatedRoute: ActivatedRoute,
-    public router: Router,
-    public apiService: ApiService
-  ) {
+  constructor(public activatedRoute: ActivatedRoute, public router: Router, public apiService: ApiService) {
     this.data = new Student();
   }
 
   ngOnInit() {
-    this.id = this.activatedRoute.snapshot.params["id"];
-    //get item details using id
+    this.id = this.activatedRoute.snapshot.params["id"]; //get item details using id  
     this.apiService.getItem(this.id).subscribe(response => {
       console.log(response);
       this.data = response;
     })
   }
 
-  update() {
-    //Update item by taking id and updated data object
+  update() {     //Update item by taking id and updated data object
     this.apiService.updateItem(this.id, this.data).subscribe(response => {
       this.router.navigate(['student-list']);
     })

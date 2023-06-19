@@ -16,18 +16,12 @@ import { HttpClientModule } from '@angular/common/http';
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule, HttpClientModule]
 })
-export class StudentCreatePage implements OnInit {
+export class StudentCreatePage {
 
   data: Student
 
-  constructor(
-    public apiService: ApiService,
-    public router: Router
-  ) {
+  constructor(public apiService: ApiService, public router: Router) {
     this.data = new Student();
-  }
-
-  ngOnInit() {
   }
 
   submitForm() {

@@ -12,7 +12,7 @@ export const routes: Routes = [
     loadComponent: () => import('./student-create/student-create.page').then( m => m.StudentCreatePage)
   },
   {
-    path: 'student-edit',
+    path: 'student-edit/:id',
     loadComponent: () => import('./student-edit/student-edit.page').then( m => m.StudentEditPage)
   },
   {
